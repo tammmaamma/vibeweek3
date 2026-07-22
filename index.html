@@ -1,0 +1,123 @@
+<!--
+  연습용 힌트: 이 파일에는 초보자가 자주 하는 실수 3가지가 일부러 포함되어 있습니다.
+  ① <title> 태그 없음
+  ② <img> alt 속성 없음
+  ③ 모바일 viewport meta 태그 없음
+  실습 시 위 3가지를 찾아 직접 고쳐보세요.
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffe3f1 0%, #e5e8ff 50%, #d9f6ec 100%);
+      padding: 40px 16px;
+    }
+
+    .card {
+      background: #fffdfc;
+      border-radius: 28px;
+      padding: 40px 36px;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(190, 170, 220, 0.35);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #ffe0ef;
+      box-shadow: 0 8px 18px rgba(255, 182, 213, 0.5);
+    }
+
+    .name {
+      margin: 20px 0 6px;
+      font-size: 26px;
+      font-weight: 700;
+      color: #6b5b7b;
+    }
+
+    .tagline {
+      margin: 0 0 24px;
+      font-size: 15px;
+      color: #9a8ba8;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #b892c9;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .likes {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .likes li {
+      background: #f4f0ff;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: 15px;
+      color: #6b5b7b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .likes li:nth-child(1) {
+      background: #ffe9f2;
+    }
+
+    .likes li:nth-child(2) {
+      background: #e9f3ff;
+    }
+
+    .likes li:nth-child(3) {
+      background: #e7f9ee;
+    }
+
+    .emoji {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="avatar" src="https://placehold.co/280x280/ffd6e8/8a6d9e?text=%3A%29">
+
+    <h1 class="name">김하늘</h1>
+    <p class="tagline">코드와 커피를 좋아하는 주니어 개발자입니다 :)</p>
+
+    <div>
+      <p class="section-title">좋아하는 것 3가지</p>
+      <ul class="likes">
+        <li><span class="emoji">☕</span> 아침에 마시는 라떼 한 잔</li>
+        <li><span class="emoji">🎧</span> 로파이 음악 들으며 코딩하기</li>
+        <li><span class="emoji">🐣</span> 파스텔톤 디자인 구경하기</li>
+      </ul>
+    </div>
+  </main>
+</body>
+</html>
