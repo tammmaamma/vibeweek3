@@ -1,0 +1,5 @@
+{
+  "name": "page-tools",
+  "description": "HTML 페이지를 title 유무, 깨진 내부 링크, 이미지 alt, 모바일 viewport, UTF-8 인코딩 5가지 관점에서 점검하는 도구 모음",
+  "version": "0.1.0"
+}
