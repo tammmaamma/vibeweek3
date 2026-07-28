@@ -1,6 +1,6 @@
 ---
 name: page-check
-description: HTML 페이지를 title 유무, 깨진 내부 링크, 이미지 alt, 모바일 viewport, UTF-8 인코딩 5가지 관점에서 점검할 때 사용한다. 사용자가 "페이지 점검", "page check", "이 html 점검해줘", "웹페이지 검사해줘"라고 요청하거나 작성한 HTML 파일의 품질을 확인하고 싶어할 때 이 스킬을 사용한다.
+description: 로컬 HTML 페이지를 title 유무 / 깨진 내부 링크 / 이미지 alt / 모바일 viewport / 한글 인코딩(UTF-8) 5가지 관점으로 점검하고 결과를 🔴심각/🟡주의/🟢제안으로 분류해 보고한다. 사용자가 "페이지 점검", "page check"라고 말하거나, HTML 파일을 점검/검사/체크/리뷰해달라고 요청하거나, 작성한 HTML의 품질을 확인하고 싶어할 때는 반드시 이 스킬을 사용한다.
 ---
 
 # page-check
