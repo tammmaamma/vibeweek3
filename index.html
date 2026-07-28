@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>김하늘 소개</title>
+  <title>heeyeon 소개</title>
   <style>
     * {
       box-sizing: border-box;
@@ -16,17 +16,17 @@
       align-items: center;
       justify-content: center;
       font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #ffe3f1 0%, #e5e8ff 50%, #d9f6ec 100%);
+      background: linear-gradient(135deg, #f5f1ea 0%, #ece6d9 50%, #e6dfd0 100%);
       padding: 40px 16px;
     }
 
     .card {
-      background: #fffdfc;
+      background: #faf7f2;
       border-radius: 28px;
       padding: 40px 36px;
       max-width: 380px;
       width: 100%;
-      box-shadow: 0 20px 40px rgba(190, 170, 220, 0.35);
+      box-shadow: 0 20px 40px rgba(120, 108, 84, 0.18);
       text-align: center;
     }
 
@@ -35,28 +35,28 @@
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      border: 6px solid #ffe0ef;
-      box-shadow: 0 8px 18px rgba(255, 182, 213, 0.5);
+      border: 6px solid #e8dfcc;
+      box-shadow: 0 8px 18px rgba(150, 134, 100, 0.25);
     }
 
     .name {
       margin: 20px 0 6px;
       font-size: 26px;
       font-weight: 700;
-      color: #6b5b7b;
+      color: #3d3a33;
     }
 
     .tagline {
       margin: 0 0 24px;
       font-size: 15px;
-      color: #9a8ba8;
+      color: #8a8375;
       line-height: 1.5;
     }
 
     .section-title {
       font-size: 14px;
       font-weight: 700;
-      color: #b892c9;
+      color: #7a7263;
       letter-spacing: 0.05em;
       margin-bottom: 12px;
     }
@@ -71,38 +71,85 @@
     }
 
     .likes li {
-      background: #f4f0ff;
+      background: #f1ece1;
       border-radius: 14px;
       padding: 12px 16px;
       font-size: 15px;
-      color: #6b5b7b;
+      color: #4a4639;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .likes li:nth-child(1) {
-      background: #ffe9f2;
+      background: #eee7d8;
     }
 
     .likes li:nth-child(2) {
-      background: #e9f3ff;
+      background: #e9e2d1;
     }
 
     .likes li:nth-child(3) {
-      background: #e7f9ee;
+      background: #ece5d5;
     }
 
     .emoji {
       font-size: 18px;
     }
+
+    .mood-section {
+      margin-top: 24px;
+    }
+
+    .mood-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .mood-btn {
+      width: 52px;
+      height: 52px;
+      border: none;
+      border-radius: 50%;
+      background: #f1ece1;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .mood-btn:hover {
+      background: #e8dfcc;
+    }
+
+    .mood-btn:active {
+      transform: scale(0.95);
+    }
+
+    .mood-btn.is-selected {
+      background: #e6dfd0;
+      box-shadow: 0 4px 10px rgba(150, 134, 100, 0.25);
+    }
+
+    .mood-message {
+      min-height: 21px;
+      margin: 0;
+      font-size: 14px;
+      color: #4a4639;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
   <main class="card">
-    <img class="avatar" src="https://placehold.co/280x280/ffd6e8/8a6d9e?text=%3A%29" alt="김하늘 프로필 사진">
+    <img class="avatar" src="https://placehold.co/280x280/ffd6e8/8a6d9e?text=%3A%29" alt="heeyeon 프로필 사진">
 
-    <h1 class="name">김하늘</h1>
+    <h1 class="name">heeyeon</h1>
     <p class="tagline">코드로 문제를 풀고, 커피로 영감을 얻는 개발자입니다</p>
 
     <div>
@@ -113,6 +160,37 @@
         <li><span class="emoji">🐣</span> 파스텔톤 디자인 구경하기</li>
       </ul>
     </div>
+
+    <div class="mood-section">
+      <p class="section-title">오늘의 기분</p>
+      <div class="mood-buttons">
+        <button type="button" class="mood-btn" aria-label="신남"
+          data-message="신나는 기분이야">
+          <span class="emoji">😊</span>
+        </button>
+        <button type="button" class="mood-btn" aria-label="차분"
+          data-message="조용한 시간이 좋아">
+          <span class="emoji">🌿</span>
+        </button>
+        <button type="button" class="mood-btn" aria-label="무기력"
+          data-message="할 기운이 없어">
+          <span class="emoji">💫</span>
+        </button>
+      </div>
+      <p class="mood-message" id="mood-message"></p>
+    </div>
   </main>
+
+  <script>
+    document.querySelectorAll('.mood-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('mood-message').textContent = btn.dataset.message;
+        document.querySelectorAll('.mood-btn').forEach(function (b) {
+          b.classList.remove('is-selected');
+        });
+        btn.classList.add('is-selected');
+      });
+    });
+  </script>
 </body>
 </html>
