@@ -123,8 +123,10 @@
       transition: background-color 0.2s ease, transform 0.15s ease;
     }
 
-    .mood-btn:hover {
-      background: #e8dfcc;
+    @media (hover: hover) {
+      .mood-btn:hover {
+        background: #e8dfcc;
+      }
     }
 
     .mood-btn:active {
@@ -133,6 +135,7 @@
 
     .mood-btn.is-selected {
       background: #e6dfd0;
+      border: 2px solid #4a4639;
       box-shadow: 0 4px 10px rgba(150, 134, 100, 0.25);
     }
 
@@ -164,20 +167,20 @@
     <div class="mood-section">
       <p class="section-title">오늘의 기분</p>
       <div class="mood-buttons">
-        <button type="button" class="mood-btn" aria-label="신남"
+        <button type="button" class="mood-btn" aria-label="신남" aria-pressed="false"
           data-message="신나는 기분이야">
           <span class="emoji">😊</span>
         </button>
-        <button type="button" class="mood-btn" aria-label="차분"
+        <button type="button" class="mood-btn" aria-label="차분" aria-pressed="false"
           data-message="조용한 시간이 좋아">
           <span class="emoji">🌿</span>
         </button>
-        <button type="button" class="mood-btn" aria-label="무기력"
+        <button type="button" class="mood-btn" aria-label="무기력" aria-pressed="false"
           data-message="할 기운이 없어">
           <span class="emoji">💫</span>
         </button>
       </div>
-      <p class="mood-message" id="mood-message"></p>
+      <p class="mood-message" id="mood-message" aria-live="polite"></p>
     </div>
   </main>
 
@@ -187,8 +190,10 @@
         document.getElementById('mood-message').textContent = btn.dataset.message;
         document.querySelectorAll('.mood-btn').forEach(function (b) {
           b.classList.remove('is-selected');
+          b.setAttribute('aria-pressed', 'false');
         });
         btn.classList.add('is-selected');
+        btn.setAttribute('aria-pressed', 'true');
       });
     });
   </script>
