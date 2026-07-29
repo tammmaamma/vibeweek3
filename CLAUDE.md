@@ -16,3 +16,8 @@ There are no build, lint, or test commands to document, and no architecture to d
 ## Language
 
 - 모든 대화(응답)와 커밋 메시지는 한국어로 작성한다.
+
+## Design rules
+
+- 버튼은 민트색 계열 배경 + 둥근 모서리 12px을 기본 스타일로 사용한다.
+  - 민트색: `#4fd1a5` (RGB: 79, 209, 165)
