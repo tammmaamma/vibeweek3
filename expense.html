@@ -6,16 +6,16 @@
 <title>미니 가계부 분석기</title>
 <style>
   :root {
-    --pink: #ffd6e8;
-    --lavender: #e0d4f7;
-    --mint: #d4f7e8;
-    --peach: #ffe8d6;
-    --text: #5a4a5e;
-    --text-light: #8a7a8e;
+    --mint: #a8ecd3;
+    --mint-light: #d9fbf0;
+    --lemon: #fff6a8;
+    --lemon-light: #fffde7;
+    --text: #3f6b5e;
+    --text-light: #7a9e91;
     --card-bg: #ffffff;
     --danger: #ff9eb5;
     --danger-dark: #ff7096;
-    --accent: #b39ddb;
+    --accent: #4fd1a5;
   }
 
   * {
@@ -26,7 +26,7 @@
     margin: 0;
     min-height: 100vh;
     font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 50%, var(--mint) 100%);
+    background: linear-gradient(135deg, var(--mint) 0%, var(--mint-light) 50%, var(--lemon) 100%);
     background-attachment: fixed;
     color: var(--text);
     padding: 24px 16px 60px;
@@ -59,7 +59,7 @@
     background: var(--card-bg);
     border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 8px 24px rgba(179, 157, 219, 0.18);
+    box-shadow: 0 8px 24px rgba(79, 209, 165, 0.18);
     margin-bottom: 20px;
   }
 
@@ -70,12 +70,12 @@
   }
 
   .input-row input {
-    border: 2px solid var(--lavender);
+    border: 2px solid var(--mint);
     border-radius: 12px;
     padding: 10px 12px;
     font-size: 1rem;
     outline: none;
-    background: #faf8ff;
+    background: #f7fff9;
     color: var(--text);
     transition: border-color 0.2s;
   }
@@ -103,14 +103,14 @@
     font-size: 1rem;
     font-weight: 700;
     color: #fff;
-    background: linear-gradient(135deg, #d8b6ff, #ffb3c6);
+    background: linear-gradient(135deg, #4fd1a5, #ffe066);
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s;
   }
 
   #add-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(216, 182, 255, 0.4);
+    box-shadow: 0 6px 14px rgba(79, 209, 165, 0.4);
   }
 
   #add-btn:active {
@@ -129,7 +129,7 @@
     justify-content: space-between;
     padding: 12px 14px;
     border-radius: 14px;
-    background: var(--peach);
+    background: var(--lemon-light);
     margin-bottom: 10px;
     animation: pop-in 0.2s ease;
   }
@@ -188,7 +188,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #e0d4f7, #d4f7e8);
+    background: linear-gradient(135deg, var(--mint), var(--lemon));
   }
 
   .total-card .label {
@@ -199,7 +199,7 @@
   .total-card .total-amount {
     font-size: 1.4rem;
     font-weight: 800;
-    color: #6a4a8e;
+    color: #1f6b52;
   }
 
   footer {
@@ -213,8 +213,8 @@
 <body>
   <div class="container">
     <header>
-      <h1>🧸 미니 가계부 분석기</h1>
-      <p>오늘의 지출을 파스텔빛으로 기록해요</p>
+      <h1>🍋 미니 가계부 분석기</h1>
+      <p>민트 &amp; 레몬빛으로 상큼하게 기록해요</p>
     </header>
 
     <div class="card">
