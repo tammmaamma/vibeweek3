@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미니 가계부 분석기</title>
+<style>
+  :root {
+    --pink: #ffd6e8;
+    --lavender: #e0d4f7;
+    --mint: #d4f7e8;
+    --peach: #ffe8d6;
+    --text: #5a4a5e;
+    --text-light: #8a7a8e;
+    --card-bg: #ffffff;
+    --danger: #ff9eb5;
+    --danger-dark: #ff7096;
+    --accent: #b39ddb;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 50%, var(--mint) 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    padding: 24px 16px 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    margin: 0 0 4px;
+  }
+
+  header p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(179, 157, 219, 0.18);
+    margin-bottom: 20px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .input-row input {
+    border: 2px solid var(--lavender);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    outline: none;
+    background: #faf8ff;
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+
+  .input-row input:focus {
+    border-color: var(--accent);
+  }
+
+  #item-name {
+    flex: 2;
+    min-width: 120px;
+  }
+
+  #item-amount {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  #add-btn {
+    flex: 0 0 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #d8b6ff, #ffb3c6);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  #add-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(216, 182, 255, 0.4);
+  }
+
+  #add-btn:active {
+    transform: translateY(0);
+  }
+
+  ul#expense-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .expense-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--peach);
+    margin-bottom: 10px;
+    animation: pop-in 0.2s ease;
+  }
+
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .expense-item .name {
+    font-weight: 600;
+    word-break: break-all;
+    margin-right: 8px;
+  }
+
+  .expense-item .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .expense-item .amount {
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+
+  .delete-btn {
+    border: none;
+    background: var(--danger);
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+
+  .delete-btn:hover {
+    background: var(--danger-dark);
+  }
+
+  .empty-message {
+    text-align: center;
+    color: var(--text-light);
+    padding: 24px 0;
+    font-size: 0.95rem;
+  }
+
+  .total-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #e0d4f7, #d4f7e8);
+  }
+
+  .total-card .label {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .total-card .total-amount {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #6a4a8e;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧸 미니 가계부 분석기</h1>
+      <p>오늘의 지출을 파스텔빛으로 기록해요</p>
+    </header>
+
+    <div class="card">
+      <div class="input-row">
+        <input type="text" id="item-name" placeholder="항목명 (예: 커피)" maxlength="30">
+        <input type="number" id="item-amount" placeholder="금액" min="0" step="1">
+        <button id="add-btn" type="button">+ 추가하기</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <ul id="expense-list"></ul>
+      <p class="empty-message" id="empty-message">아직 등록된 지출이 없어요 🌸</p>
+    </div>
+
+    <div class="card total-card">
+      <span class="label">💰 총 합계</span>
+      <span class="total-amount" id="total-amount">0원</span>
+    </div>
+
+    <footer>모든 데이터는 브라우저를 새로고침하면 초기화돼요</footer>
+  </div>
+
+<script>
+  const nameInput = document.getElementById('item-name');
+  const amountInput = document.getElementById('item-amount');
+  const addBtn = document.getElementById('add-btn');
+  const listEl = document.getElementById('expense-list');
+  const totalEl = document.getElementById('total-amount');
+  const emptyMessage = document.getElementById('empty-message');
+
+  let expenses = [];
+
+  function formatWon(num) {
+    return num.toLocaleString('ko-KR') + '원';
+  }
+
+  function render() {
+    listEl.innerHTML = '';
+
+    if (expenses.length === 0) {
+      emptyMessage.style.display = 'block';
+    } else {
+      emptyMessage.style.display = 'none';
+      expenses.forEach((expense) => {
+        const li = document.createElement('li');
+        li.className = 'expense-item';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'name';
+        nameSpan.textContent = expense.name;
+
+        const right = document.createElement('div');
+        right.className = 'right';
+
+        const amountSpan = document.createElement('span');
+        amountSpan.className = 'amount';
+        amountSpan.textContent = formatWon(expense.amount);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.type = 'button';
+        deleteBtn.textContent = '✕';
+        deleteBtn.setAttribute('aria-label', expense.name + ' 삭제');
+        deleteBtn.addEventListener('click', () => {
+          expenses = expenses.filter((item) => item.id !== expense.id);
+          render();
+        });
+
+        right.appendChild(amountSpan);
+        right.appendChild(deleteBtn);
+        li.appendChild(nameSpan);
+        li.appendChild(right);
+        listEl.appendChild(li);
+      });
+    }
+
+    const total = expenses.reduce((sum, item) => sum + item.amount, 0);
+    totalEl.textContent = formatWon(total);
+  }
+
+  function addExpense() {
+    const name = nameInput.value.trim();
+    const amount = Number(amountInput.value);
+
+    if (!name) {
+      nameInput.focus();
+      return;
+    }
+    if (!amountInput.value || isNaN(amount) || amount < 0) {
+      amountInput.focus();
+      return;
+    }
+
+    expenses.push({ id: Date.now(), name, amount });
+    nameInput.value = '';
+    amountInput.value = '';
+    nameInput.focus();
+    render();
+  }
+
+  addBtn.addEventListener('click', addExpense);
+
+  [nameInput, amountInput].forEach((input) => {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addExpense();
+      }
+    });
+  });
+
+  render();
+</script>
+</body>
+</html>
